@@ -1,0 +1,200 @@
+$primary-color: #2e2833;
+$primary-color-btn:#0a2803;
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.btn {
+  background-color: $primary-color-btn;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.nav {
+  background: {
+	color: $primary-color;
+  }
+;
+  .brand-logo {
+	padding-left: 10%;
+  }
+}
+
+.full-height {
+  min-height: 100vh;
+  margin: {
+	bottom: 0;
+  }
+;
+}
+
+.modal-login {
+  .modal-footer {
+	text-align: center;
+	& > .login-button {
+	  background: {
+		color: $primary-color;
+	  }
+	;
+	}
+  }
+}
+
+/**
+/*HOME-PAGE
+ */
+.section-home {
+  padding: 5%;
+  & > div:nth-child(1) {
+	padding: {
+	  top: 5%;
+	}
+  ;
+	.btn {
+	  background: {
+		color: #3b3540
+	  }
+	;
+	}
+  }
+  .form {
+	padding: 0;
+
+	.form-title {
+	  padding: 5%;
+	  text-transform: uppercase;
+	  color: #fff;
+	  font: {
+		weight: 600;
+	  }
+	;
+	  background: {
+		color: firebrick;
+	  }
+	}
+
+	.register-button {
+	  background: {
+		color: firebrick;
+	  }
+	;
+	}
+  }
+}
+
+.section-popular-quiz {
+  padding: {
+	top: 5%;
+	bottom: 2%;
+  }
+;
+  background: {
+	color: $primary-color;
+  }
+;
+  h3 {
+	margin: {
+	  bottom: 0;
+	}
+	color: #fff;
+
+  }
+  h3 + .bottom {
+	border-bottom: 4px solid red;
+	width: 10%;
+	margin: {
+	  top: 0;
+	  left: auto;
+	  right: auto;
+	  bottom: 2%;
+	}
+  ;
+
+	margin-bottom: 2%;
+  }
+  & > .card.quiz-cards {
+	padding: 0;
+	margin: {
+	  left: 5%;
+	  right: 2.5%;
+	}
+  ;
+	button {
+	  background: {
+		color: firebrick;
+	  }
+	;
+	}
+  }
+}
+
+.section-about {
+  padding: 5%;
+  display: table;
+  .card-panel {
+	display: inline-block;
+	vertical-align: middle;
+  }
+  .section-about-text {
+	display: inline-block;
+	vertical-align: middle;
+  }
+}
+
+.page-footer {
+  background: {
+	color: #3b3540
+  }
+;
+}
+
+.quiz-container {
+
+  padding-top: 5%;
+
+  .quiz {
+	padding: 0;
+	margin: {
+	  left: 5% !important;
+	}
+  ;
+	& > .card-content {
+	  padding: 0;
+	  margin: 0;
+
+	}
+	h2 {
+	  margin: {
+		top: 0;
+	  }
+	;
+	  padding: {
+		left: 5%;
+		right: 5%;
+		top: 5%;
+	  }
+	;
+	  border-bottom: solid thin #000;
+	  background-color: #3b3540;
+	}
+	.quiz-desc {
+	  padding: 10px;
+	  .quiz-title {
+		text-transform: capitalize;
+	  }
+	}
+  }
+}
+
+.scripts {
+  .card-content {
+	& > div {
+
+	  box-shadow: 0 2px rgba(#040404, .4);
+	}
+  }
+}
