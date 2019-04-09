@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class quiz extends Model
 {
-	protected $fillable = ['user_id', 'result'];
+	protected $fillable = ['user_id', 'course_id','result'];
 
 	public function examiner()
 	{
@@ -21,5 +21,9 @@ class quiz extends Model
 	public function quizAnswer()
 	{
 		return $this->hasMany(quizAnswer::class);
+	}
+	public function course()
+	{
+		return $this->belongsTo(course::class);
 	}
 }

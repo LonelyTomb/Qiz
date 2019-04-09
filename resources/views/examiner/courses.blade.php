@@ -21,7 +21,6 @@
 									Questions</a>
 								<a href="courses/add/{{$course->id}}" class="btn waves-block">Add
 									Questions</a>
-
 							</div>
 							<div><a href="{{route('examiner.selectCourse',['id'=>$course->id])}}" class="btn btn-danger waves-block left">Upload Scripts</a></div>
 							<div><a href="{{route('examiner.deleteCourse',['id'=>$course->id])}}" class="btn btn-danger waves-block materialize-red right">Delete</a></div>

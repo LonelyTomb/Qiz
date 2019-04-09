@@ -139,6 +139,7 @@ class BatchUploadQuestions extends Controller
 
 		$quiz = quiz::create([
 			'user_id' => $user,
+			'course_id' => $course,
 			'result' => $result,
 		]);
 
@@ -231,7 +232,7 @@ class BatchUploadQuestions extends Controller
 		$result = 0;
 		$totalQuestionsMarks = 0;
 		$user = DB::table('users')->where('email', $userEm)->get()[0]->id;
-		$quiz = quiz::firstOrCreate(['id' => $quizId, 'user_id' => $user, 'result' => $result]);
+		$quiz = quiz::firstOrCreate(['id' => $quizId, 'user_id' => $user, 'course_id' => $course, 'result' => $result]);
 
 
 		$oldScript = scripts::where(['quiz_id' => $quiz, 'user_id' => $user])->get();

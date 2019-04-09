@@ -64,6 +64,7 @@ class QuizController extends Controller
 
 		$quiz = quiz::create([
 			'user_id' => Auth::id(),
+			'course_id' => $request->input('course'),
 			'result' => $result,
 		]);
 
@@ -76,7 +77,7 @@ class QuizController extends Controller
 		]);
 
 		foreach ($request->input('questions', []) as $key => $question) {
-			$startTime = array_sum( explode( ' ' , microtime() ) );
+			$startTime = array_sum(explode(' ', microtime()));
 			$count = 0;
 			$score1 = 0;
 			$score2 = 0;
@@ -100,7 +101,7 @@ class QuizController extends Controller
 				foreach ($quizAnswer_split as $quizA) {
 					if ($questionA == $quizA) {
 						++$score1;
-						array_splice($questionAns_split,$ky,1,'');
+						array_splice($questionAns_split, $ky, 1, '');
 					}
 				}
 			}
@@ -130,7 +131,7 @@ class QuizController extends Controller
 
 //			Final Result
 			$result += $score;
-			$stopTime = array_sum( explode( ' ' , microtime() ) );
+			$stopTime = array_sum(explode(' ', microtime()));
 			// matching ends here
 			quizAnswer::create([
 				'user_id' => Auth::id(),
@@ -141,11 +142,11 @@ class QuizController extends Controller
 				'keywordsMatched' => $totalScore2,
 				'correct' => $status,
 				'answer' => $request->input('answers.' . $question),
-				'speed' => $stopTime -$startTime
+				'speed' => $stopTime - $startTime
 			]);
 		}
 
-		$result = round($result / $totalQuestionsMarks * 100,2);
+		$result = round($result / $totalQuestionsMarks * 100, 2);
 
 		$quiz->update(['result' => $result]);
 

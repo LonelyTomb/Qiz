@@ -20,6 +20,7 @@
 							<div class="card-action">
 								<a href="results/{{$course->id}}" class="btn waves-block materialize-red">View
 									Scripts</a>
+								<a href="/examiner/courses/export/scores/{{$course->id}}" target="_blank" class="btn waves-block">Export Scores</a>
 							</div>
 						</div>
 					</div>
