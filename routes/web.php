@@ -73,6 +73,9 @@ Route::prefix('/examiner')->group(function () {
 	Route::get('/courses/add/{id}', 'QuestionController@addQuestions')->name('examiner.addQuestions');
 	Route::post('/courses/add', 'QuestionController@saveQuestions')->name('examiner.saveQuestions');
 
+	Route::get('/courses/batchCreate/{id}', 'BatchCreateQuestions@index')->name('examiner.uploadQuestions.index');
+	Route::post('/courses/batchCreate/{id}', 'BatchCreateQuestions@uploadQuestions')->name('examiner.uploadQuestions.save');
+
 //  Batch Upload Question&Answers
 	Route::get('/courses/select/{id}','BatchUploadQuestions@selectCourse')->name('examiner.selectCourse');
 	Route::post('/course/select/{id}/mark','BatchUploadQuestions@markCourse')->name('examiner.processUploadUserQuestions');

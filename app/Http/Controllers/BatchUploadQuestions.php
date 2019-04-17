@@ -42,37 +42,6 @@ class BatchUploadQuestions extends Controller
 		return view('examiner.selectQuestionToMark', compact('questions'));
 	}
 
-	public function markCourse(Request $request, $id)
-	{
-		$answers = $this->parseFile($request);
-		$question = $request->question;
-		$quizId = $request->quiz;
-		$course = $id;
-		$count = 1;
-
-		$questionsArr = [];
-		$answerArr = [];
-		$users = [];
-		foreach ($answers['collection'] as $key => $answer) {
-
-		}
-
-
-		foreach ($answers['collection'] as $key => $answer) {
-			$questionsArr[$count++] = $question;
-			$user = $answer['Email'];
-			$answerArr[$question] = $answer['Answer'];
-
-			$quiz = [
-				"questions" => $questionsArr,
-				"answers" => $answerArr
-			];
-
-			$scriptId = $this->markUploadAnswers($user, $course, $quizId, $question, $quiz);
-		}
-
-		return redirect()->route('examiner.viewScript', $scriptId);
-	}
 
 	/**
 	 * @return \Illuminate\Support\Collection
@@ -92,8 +61,8 @@ class BatchUploadQuestions extends Controller
 		$questionsArr = [];
 		$answerArr = [];
 		foreach ($questions['collection'] as $key => $question) {
-			$questionsArr[$count++] = $question["No"];
-			$answerArr[$question['No']] = $question['Answer'];
+			$questionsArr[$count++] = $question["no"];
+			$answerArr[$question['No']] = $question['answer'];
 		}
 
 		$quiz = [
@@ -181,6 +150,7 @@ class BatchUploadQuestions extends Controller
 				}
 			}
 			$totalScore1 = (($score1 / $count) * 100);
+			$totalScore1 = $totalScore1 > 100 ? 100 : $totalScore1; /// TODO: TO be deliberated
 
 //			Scoring Using Keywords
 			$keywords = questionAnswer::find($question)->keywords;
@@ -227,6 +197,34 @@ class BatchUploadQuestions extends Controller
 		return $quiz->id;
 	}
 
+	public function markCourse(Request $request, $id)
+	{
+		$answers = $this->parseFile($request);
+		$question = $request->question;
+		$quizId = $request->quiz;
+		$course = $id;
+		$count = 1;
+
+		$questionsArr = [];
+		$answerArr = [];
+
+		foreach ($answers['collection'] as $key => $answer) {
+			$questionsArr[1] = $question;
+			$user = $answer['email'];
+			$answerArr[$question] = $answer['answer'];
+
+			$quiz = [
+				"questions" => $questionsArr,
+				"answers" => $answerArr
+			];
+
+			$scriptId = $this->markUploadAnswers($user, $course, $quizId, $question, $quiz);
+		}
+
+		return redirect()->route('examiner.viewScript', $scriptId);
+	}
+
+	//Batch Mark Answers one by one
 	public function markUploadAnswers($userEm, $course, $quizId, $questionId, $sheet)
 	{
 		$result = 0;
@@ -289,6 +287,7 @@ class BatchUploadQuestions extends Controller
 				}
 			}
 			$totalScore1 = (($score1 / $count) * 100);
+			$totalScore1 = $totalScore1 > 100 ? 100 : $totalScore1; /// TODO: TO be deliberated
 
 //			Scoring Using Keywords
 			$keywords = questionAnswer::find($question)->keywords;
