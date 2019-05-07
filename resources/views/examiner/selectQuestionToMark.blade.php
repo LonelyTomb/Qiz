@@ -46,6 +46,11 @@
 				</div>
 				{{ csrf_field() }}
 			</form>
+			<div class="col sm2">
+				<a href="{{$template}}" class="btn btn-sm" type="submit">Download
+					Template
+				</a>
+			</div>
 		</div>
 	</div>
 @endsection

@@ -1,8 +1,8 @@
  <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Qiz</h5>
-                <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, nostrum?</p>
+                <h5 class="white-text">ETA</h5>
+                <p class="grey-text text-lighten-4">Essay Test Assessor</p>
 
                 <div class="social-links">
                     <i></i>
@@ -21,6 +21,6 @@
     </div>
     <div class="footer-copyright">
         <div class="container">
-            © 2017 <a class="grey-text text-lighten-4 right" href="#!"></a>
+            © 2019 <a class="grey-text text-lighten-4 right" href="#!"></a>
         </div>
     </div>

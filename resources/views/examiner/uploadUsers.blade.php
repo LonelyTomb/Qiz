@@ -9,13 +9,15 @@
 	<div class="row">
 		@include('examiner.sidebar')
 		<div class="col m8">
-			<h2 class="center-align">Upload Questions And Answers</h2>
-			<form action="{{route('examiner.processUploadQuestions')}}" class="card-panel" method="POST" enctype="multipart/form-data">
+			<h2 class="center-align">Upload Users</h2>
+			<form action="{{route('examiner.uploadUsers')}}" class="card-panel" method="POST" enctype="multipart/form-data">
 				<div class="col sm2">
-					<button formaction="{{route("examiner.usersTemplate")}}" class="btn btn-sm" type="submit" formmethod="get">Download
+					<a href="{{$template}}" class="btn btn-sm" type="submit">Download
 						Template
-					</button>
+					</a>
 				</div>
+				<br>
+				<br>
 				<div class="row">
 					<div class="file-field input-field">
 						<div class="btn">
@@ -23,16 +25,18 @@
 							<input type="file" name="file" id="file">
 						</div>
 						<div class="file-path-wrapper">
-							<input class="file-path validate" type="text" placeholder="Upload excel sheet">
+							<input class="file-path validate" type="text" placeholder="Upload user excel sheet">
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<button type="submit" class="btn waves-block firebrick success">Upload</button>
-					<a href="{{route("examiner.download")}}" class="btn">Download</a>
 				</div>
 				{{ csrf_field() }}
 			</form>
+            <button formaction="{{route("examiner.getUsers")}}" class="btn btn-sm" type="submit" formmethod="get">Export
+                Users
+            </button>
 		</div>
 	</div>
 @endsection

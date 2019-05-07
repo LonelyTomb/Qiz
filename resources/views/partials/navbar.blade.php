@@ -1,7 +1,7 @@
 <div class="navbar-fixed">
     <nav class="nav">
         <div class="nav-wrapper">
-            <a href="{{route('home')}}" class="brand-logo">Qiz</a>
+            <a href="{{route('home')}}" class="brand-logo">ETA</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 @guest
                     <li><a href="{{route('home')}}/#home">Home</a></li>

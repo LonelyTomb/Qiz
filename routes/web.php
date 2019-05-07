@@ -77,6 +77,7 @@ Route::prefix('/examiner')->group(function () {
 	Route::post('/courses/batchCreate/{id}', 'BatchCreateQuestions@uploadQuestions')->name('examiner.uploadQuestions.save');
 
 //  Batch Upload Question&Answers
+    Route::get('/courses/question/template','BatchUploadQuestions@downloadQue')->name('examiner.downloadQue');
 	Route::get('/courses/select/{id}','BatchUploadQuestions@selectCourse')->name('examiner.selectCourse');
 	Route::post('/course/select/{id}/mark','BatchUploadQuestions@markCourse')->name('examiner.processUploadUserQuestions');
 
@@ -92,6 +93,13 @@ Route::prefix('/examiner')->group(function () {
 	Route::get('/courses/results', 'ExaminerController@viewResult')->name('examiner.results');
 	Route::get('/courses/results/{id}', 'ExaminerController@checkResult')->name('examiner.checkResult');
 	Route::get('/courses/viewScript/{quiz}', 'ExaminerController@viewScript')->name('examiner.viewScript');
+
+
+    Route::get('/upload/usersPage','BatchCreateUsers@index')->name('examiner.uploadUsersPage');
+    Route::post('/courses/upload/users','BatchCreateUsers@uploadUsers')->name('examiner.uploadUsers');
+    Route::get('/courses/upload/downloadUsers','BatchCreateUsers@usersTemplate')->name('examiner.usersTemplate');
+    Route::get('/courses/export/users','BatchCreateUsers@exportUsers')->name('examiner.getUsers');
+
 });
 
 Route::prefix('/admin')->group(function () {

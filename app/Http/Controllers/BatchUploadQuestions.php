@@ -38,8 +38,9 @@ class BatchUploadQuestions extends Controller
 	public function selectCourse(Request $request)
 	{
 		$questions = question::where('course_id', $request->id)->get();
+        $template = Storage::url('answers.xlsx');
 //		dd($questions);
-		return view('examiner.selectQuestionToMark', compact('questions'));
+		return view('examiner.selectQuestionToMark', compact('questions','template'));
 	}
 
 
