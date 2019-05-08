@@ -21,7 +21,7 @@
 								<a href="results/{{$course->id}}" class="btn waves-block materialize-red">View
 									Scripts</a>
 								<a href="/examiner/courses/export/scores/{{$course->id}}" target="_blank" class="btn waves-block">Export Scores</a>
-								<a href="/examiner/courses/export/single_answers/{{$course->id}}" target="_blank" class="btn waves-block">Export Single Answers</a>
+								<a href="/examiner/courses/export/single_answers/{{$course->id}}" target="_blank" class="btn waves-block">Export Answers</a>
 							</div>
 						</div>
 					</div>
