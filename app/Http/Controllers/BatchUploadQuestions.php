@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\CourseController;
 use App\question;
+use App\singleAnswer;
 use App\questionAnswer;
 use Rap2hpoutre\FastExcel\FastExcel;
 use App\quiz;
@@ -219,10 +220,10 @@ class BatchUploadQuestions extends Controller
 				"answers" => $answerArr
 			];
 
-			$scriptId = $this->markUploadAnswers($user, $course, $quizId, $question, $quiz);
+			$this->markUploadAnswers($user, $course, $quizId, $question, $quiz);
 		}
 
-		return redirect()->route('examiner.viewScript', $scriptId);
+		return redirect()->route('examiner.home');
 	}
 
 	//Batch Mark Answers one by one
@@ -231,32 +232,8 @@ class BatchUploadQuestions extends Controller
 		$result = 0;
 		$totalQuestionsMarks = 0;
 		$user = DB::table('users')->where('email', $userEm)->get()[0]->id;
-		$quiz = quiz::firstOrCreate(['id' => $quizId, 'user_id' => $user, 'course_id' => $course, 'result' => $result]);
 
 
-		$oldScript = scripts::where(['quiz_id' => $quiz, 'user_id' => $user])->get();
-		if (count($oldScript) !== 0) {
-
-			$questionsArray = json_decode($oldScript[0]['questions']);
-			$answersArray = json_decode($oldScript[0]['answers']);
-
-			$questionsArray[] = $sheet['questions'][0];
-			$answersArray[] = $sheet['answers'][0];
-
-			scripts::where('quiz_id', $quiz)
-				->update([
-					'questions' => json_encode($questionsArray),
-					'answers' => json_encode($answersArray)
-				]);
-		} else {
-			scripts::create([
-				'user_id' => $user,
-				'course_id' => $course,
-				'quiz_id' => $quiz->id,
-				'questions' => json_encode($sheet['questions']),
-				'answers' => json_encode($sheet['answers'])
-			]);
-		}
 
 		foreach ($sheet['questions'] as $key => $question) {
 			$startTime = array_sum(explode(' ', microtime()));
@@ -315,10 +292,10 @@ class BatchUploadQuestions extends Controller
 			$result += $score;
 			$stopTime = array_sum(explode(' ', microtime()));
 			// matching ends here
-			quizAnswer::create([
+			singleAnswer::create([
 				'user_id' => $user,
-				'quiz_id' => $quiz->id,
 				'question_id' => $question,
+				'course_id'=>$course,
 				'score' => $score,
 				'correctiveConfidence' => $totalScore1,
 				'keywordsMatched' => $totalScore2,
@@ -330,9 +307,5 @@ class BatchUploadQuestions extends Controller
 		}
 
 		$result = ($result / $totalQuestionsMarks) * 100;
-		$oldResult = $quiz->result;
-		$quiz->update(['result' => $result += $oldResult]);
-
-		return $quiz->id;
 	}
 }

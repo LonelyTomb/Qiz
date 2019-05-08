@@ -88,6 +88,7 @@ Route::prefix('/examiner')->group(function () {
 	Route::post('/courses/upload/scripts','BatchUploadQuestions@markUpoadScripts')->name('examiner.markUploadScripts');
 
 	Route::get('/courses/export/scores/{id}','CourseController@exportScores')->name('examiner.exportScores');
+    Route::get('/courses/export/single_answers/{id}','SingleAnswersController@exportAnswers')->name('examiner.exportAnswers');
 
 //	View User Results as Examiner
 	Route::get('/courses/results', 'ExaminerController@viewResult')->name('examiner.results');
