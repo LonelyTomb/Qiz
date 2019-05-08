@@ -64,7 +64,7 @@ class BatchUploadQuestions extends Controller
 		$answerArr = [];
 		foreach ($questions['collection'] as $key => $question) {
 			$questionsArr[$count++] = $question["no"];
-			$answerArr[$question['No']] = $question['answer'];
+			$answerArr[$question['no']] = $question['answer'];
 		}
 
 		$quiz = [
