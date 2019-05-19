@@ -30,7 +30,7 @@ class BatchCreateUsers extends Controller
     {
         $users = $this->parseFile($file);
         foreach ($users['collection'] as $key => $users) {
-	User::firstOrNew(
+	User::firstOrCreate(
                 [
                     'name' => $users['name'],
                     'email' => $users['email'],
