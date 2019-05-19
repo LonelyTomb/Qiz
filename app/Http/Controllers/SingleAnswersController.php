@@ -21,7 +21,7 @@ class SingleAnswersController extends Controller
             ->get();
 
         if (count($answers) == 0)
-            return redirect()->route('examiner.view_quizzes');
+            return redirect()->route('examiner.results');
         (new FastExcel($answers))->download('answers.xlsx', function ($answer) {
             return [
                 'Course' => $answer->course->title,

@@ -160,9 +160,10 @@ class BatchUploadQuestions extends Controller
 			$count = count($keywords_split);
 
 			foreach ($keywords_split as $keyword) {
-				if (in_array(strtolower($keyword), $quizAnswer_split, false)) {
+//				if (in_array(strtolower($keyword), $quizAnswer_split, false)) {
+                if (str_pos(strtolower($quizAnswer),strtolower(" {$keyword} ")) !== false) {
 					++$score2;
-//					array_shift($keywords_split);
+					array_shift($keywords_split);
 				}
 			}
 			$totalScore2 += (($score2 / $count) * 100);
@@ -249,9 +250,9 @@ class BatchUploadQuestions extends Controller
 			$quizAnswer_split = explode(' ', strtolower($quizAnswer));
 
 //			Scoring Using Matching
-			$questionMarks = questionAnswer::find($question)->marks;
+			$questionMarks = questionAnswer::find($questionId)->marks;
 			$totalQuestionsMarks += $questionMarks;
-			$questionAns = questionAnswer::find($question)->answer;
+			$questionAns = questionAnswer::find($questionId)->answer;
 			$questionAns_split = explode(" ", $questionAns);
 
 			$count = count($questionAns_split);
